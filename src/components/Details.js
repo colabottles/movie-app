@@ -1,6 +1,6 @@
 import React from "react";
 
-function Details({ selected, closeDetail }) {
+function Details({ selected, closeDetails }) {
     return (
         <section className="details">
             <article className="information">
@@ -16,7 +16,7 @@ function Details({ selected, closeDetail }) {
                 <button
                     type="button"
                     className="close"
-                    onClick={closeDetail}
+                    onClick={closeDetails}
                 >
                     Close
                 </button>
