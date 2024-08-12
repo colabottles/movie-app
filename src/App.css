@@ -86,8 +86,13 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 2rem;
-  min-height: calc(100vh - 201px);
+  min-height: calc(100vh - 200px);
   width: 100%;
+}
+
+p.Intro {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 form:focus-within {

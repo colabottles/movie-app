@@ -1,0 +1,33 @@
+.search-bar {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.search {
+    background: none;
+    background-color: oklch(100% 0 0);
+    border: none;
+    border-radius: 6px;
+    color: oklch(91.18% 0.035 226.59);
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    outline: none;
+    padding: 1rem;
+    transition: 0.4s ease-out;
+    width: 60%;
+}
+
+@media screen and (max-width: 410px) {
+    .search {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .search {
+        width: 75%;
+    }
+}
