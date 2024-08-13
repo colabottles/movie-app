@@ -1,6 +1,6 @@
 # Movie App
 
-A sample movie app using React.
+A sample movie app using React. Requisites here: [PDF Documentation](https://drive.google.com/file/d/1LOx3a8siol5WcvRsLuX4MlHWic5GcKVZ/view?usp=drive_link)
 
 ## Getting Started with Create React App
 
