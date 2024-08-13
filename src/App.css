@@ -42,7 +42,7 @@ a:focus:not(:focus-visible) {
   font-size: calc(10px + 1vmin);
   text-align: left;
   color: oklch(100% 0 0);
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .App-header a {
