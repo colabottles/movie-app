@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import Search from './components/Search';
 import Details from './components/Details';
+import Pagination from './components/Pagination';
 
 function App() {
   const [state, setState] = useState({
@@ -77,6 +78,7 @@ function App() {
         />
 
         <section className="container">
+        
           {state.results.map((e) => (
             <details className="item"
               key={e}
@@ -106,6 +108,7 @@ function App() {
         ) : (
           false
         )}
+        <Pagination />
       </main>
     </div>
   );

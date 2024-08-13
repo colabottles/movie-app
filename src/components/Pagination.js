@@ -1,80 +1,59 @@
 import React from 'react';
-import classnames from 'classnames';
-import { usePagination, DOTS } from './usePagination';
-import './pagination.scss';
-const Pagination = props => {
-  const {
-    onPageChange,
-    totalCount,
-    siblingCount = 1,
-    currentPage,
-    pageSize,
-    className
-  } = props;
 
-  const paginationRange = usePagination({
-    currentPage,
-    totalCount,
-    siblingCount,
-    pageSize
-  });
-
-  // If there are less than 2 times in pagination range we shall not render the component
-  if (currentPage === 0 || paginationRange.length < 2) {
-    return null;
-  }
-
-  const onNext = () => {
-    onPageChange(currentPage + 1);
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const handlePageClick = (page) => {
+    if (page !== currentPage) {
+      onPageChange(page);
+    }
   };
 
-  const onPrevious = () => {
-    onPageChange(currentPage - 1);
+  const renderPageNumbers = () => {
+    let pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`pagination__button ${
+            i === currentPage ? 'pagination__button--active' : ''
+          }`}
+          onClick={() => handlePageClick(i)}
+          aria-current={i === currentPage ? 'page' : undefined}
+          aria-label={`Page ${i}`}
+          aria-disabled={i === currentPage}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pages;
   };
 
-  let lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <ul
-      className={classnames('pagination-container', { [className]: className })}
+    <nav
+      aria-label="Pagination Navigation"
+      className="pagination"
+      role="navigation"
     >
-       {/* Left navigation arrow */}
-      <li
-        className={classnames('pagination-item', {
-          disabled: currentPage === 1
-        })}
-        onClick={onPrevious}
+      <button
+        className="pagination__button"
+        onClick={() => handlePageClick(currentPage - 1)}
+        aria-label="Previous page"
+        disabled={currentPage === 1}
       >
-        <div className="arrow left" />
-      </li>
-      {paginationRange.map(pageNumber => {
-         
-        // If the pageItem is a DOT, render the DOTS unicode character
-        if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
-        }
-		
-        // Render our Page Pills
-        return (
-          <li
-            className={classnames('pagination-item', {
-              selected: pageNumber === currentPage
-            })}
-            onClick={() => onPageChange(pageNumber)}
-          >
-            {pageNumber}
-          </li>
-        );
-      })}
-      {/*  Right Navigation arrow */}
-      <li
-        className={classnames('pagination-item', {
-          disabled: currentPage === lastPage
-        })}
-        onClick={onNext}
+        &laquo; Previous
+      </button>
+      <div role="list" className="pagination__list">
+        {renderPageNumbers()}
+      </div>
+      <button
+        className="pagination__button"
+        onClick={() => handlePageClick(currentPage + 1)}
+        aria-label="Next page"
+        disabled={currentPage === totalPages}
       >
-        <div className="arrow right" />
-      </li>
-    </ul>
+        Next &raquo;
+      </button>
+    </nav>
   );
 };
 

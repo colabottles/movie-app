@@ -9,15 +9,14 @@
     background: none;
     background-color: oklch(100% 0 0);
     border: none;
-    border-radius: 6px;
-    color: oklch(91.18% 0.035 226.59);
+    color: oklch(10% 0 0);
     display: block;
     font-size: 1.2rem;
     font-weight: 400;
     outline: none;
-    padding: 1rem;
+    padding: 0.35rem;
     transition: 0.4s ease-out;
-    width: 60%;
+    width: 30lvw;
 }
 
 @media screen and (max-width: 410px) {
