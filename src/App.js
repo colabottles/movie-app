@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import logo from './film-reel.svg';
 import './App.css';
-import axios from 'axios';
 import Search from './components/Search';
 import Details from './components/Details';
 import Pagination from './components/Pagination';
