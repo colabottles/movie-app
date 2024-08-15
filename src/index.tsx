@@ -1,13 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import './index.css';
 import App from './App';
 
-const rootElement = document.getElementById('root');
+const client = new ApolloClient({
+  uri: "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/graphql/",
+  cache: new InMemoryCache()
+});
 
-const root = ReactDOM.createRoot(rootElement as HTMLElement);
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 root.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>
+  </ApolloProvider>,
 );
