@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 
 const client = new ApolloClient({
-  uri: "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/graphql/",
+  uri: "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/movies/",
   cache: new InMemoryCache()
 });
 

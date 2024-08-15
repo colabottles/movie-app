@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { useQuery, gql } from "@apollo/client";
-import axios from "axios";
 import { useQuery } from "react-query";
+import axios from "axios";
 
 const GET_MOVIES = gql`
-  query Movie($movieId: ID!) {
-  movie(id: $movieId) {
-    id,
-    posterUrl,
-    rating
+  query Movie {
+  movies {
+    nodes {
+      id,
+      title,
+      posterUrl,
+      rating,
+      genres {
+        id,
+        title
+      }
+    }
   }
 }
 `;

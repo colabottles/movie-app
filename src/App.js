@@ -14,7 +14,7 @@ function App() {
   });
 
   const apiURL =
-    "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/movies";
+    "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/movies/";
 
   const searchInput = (e) => {
     let s = e.target.value;
@@ -78,7 +78,7 @@ function App() {
         />
 
         <section className="container">
-        
+
           {state.results.map((e) => (
             <details className="item"
               key={e}
