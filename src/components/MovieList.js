@@ -4,21 +4,13 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 const GET_MOVIES = gql`
-  query MovieList($genre: String!, $page: Int!, $limit: Int!) {
-    movies(genre: $genre, page: $page, limit: $limit) {
-      totalCount
-      results {
-        id
-        title
-        year
-        summary
-        poster
-        duration
-        rating
-        boxOffice
-      }
-    }
+  query Movie($movieId: ID!) {
+  movie(id: $movieId) {
+    id,
+    posterUrl,
+    rating
   }
+}
 `;
 
 const MovieList = ({ movies }) => {
@@ -40,14 +32,15 @@ const MovieList = ({ movies }) => {
         }
     };
 
-    const { data, isLoading, error } = useQuery("launches", () => {
-        return axios({
-          url: endpoint,
-          method: "GET",
-          data: {
-            query: GET_MOVIES
-          }
-        }).then(response => response.data.data);
+    const { data, isLoading, error } = useQuery("launches", async () => {
+        const response = await axios({
+            url: endpoint,
+            method: "GET",
+            data: {
+                query: GET_MOVIES
+            }
+        });
+        return response.data.data;
       });
     
       if (isLoading) return "Loading...";
