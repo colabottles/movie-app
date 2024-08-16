@@ -33,7 +33,7 @@ function App() {
   const search = (e) => {
     if (e.key === "Enter") {
     e.preventDefault();
-      axiosInstance.get(`${apiURL}?s=${state.s}&limit=10&page=2`)
+      axiosInstance.get(`${apiURL}?search=${state.s}`)
         .then(({ data }) => {
           let results = data.data;
 
@@ -51,7 +51,7 @@ function App() {
   };
 
   const openDetail = (id) => {
-    axios(apiURL + "&i=" + id).then(({ data }) => {
+    axiosInstance(apiURL + "/" + id).then(({ data }) => {
       let result = data;
 
       setState((prevState) => {
@@ -85,23 +85,27 @@ function App() {
         />
 
         <section className="container">
-
-          {state.results.map((e) => (
+          {state.results.map((e, key) => (
             <details className="item"
-              key={e.id}
+              key={key}
               onClick={() =>
-                openDetail(e.apiURL)
+                openDetail(e.id)
               }
             >
               <summary>
+                <h2>
+                  {e.title}
+                </h2>
+                
                 <img
                   src={e.posterUrl}
                   alt={e.title}
                 />
-                <h2>
-                  {e.title}
-                </h2>
               </summary>
+              <Details
+                selected={state.selected}
+                closeDetail={closeDetail}
+              />
             </details>
           ))}
         </section>

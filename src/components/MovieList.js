@@ -15,6 +15,10 @@ const GET_MOVIES = gql`
         id,
         title
       }
+      summary
+      mainActors
+      duration
+      directors
     }
   }
 }

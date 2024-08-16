@@ -250,8 +250,12 @@ select {
   border: 1px solid #ccc;
 }
 
-summary img {
+details img {
   height: 400px;
   width: 250px;
   aspect-ratio: 1 / 2;
+}
+
+ul.information li {
+  list-style-type: none;
 }

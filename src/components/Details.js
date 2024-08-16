@@ -1,26 +1,17 @@
 import React from "react";
 
 function Details({ selected, closeDetails }) {
+    console.log(selected);
     return (
         <section className="details">
-            <article className="information">
-                <h2>{selected.Title}</h2>
-                <span>{selected.Year}</span>
-                <p className="rating">
-                    Rating: {selected.Rating}
-                </p>
-                <aside className="about">
-                    <img src={selected.Poster} alt="" />
-                    <p>{selected.Storyline}</p>
-                </aside>
-                <button
-                    type="button"
-                    className="close"
-                    onClick={closeDetails}
-                >
-                    Close
-                </button>
-            </article>
+            <ul className="information">
+                <li>{selected.title}</li>
+                <li>{selected.datePublished}</li>
+                <li className="rating">
+                    Rating: {selected.rating}
+                </li>
+                <li>{selected.summary}</li>
+            </ul>
         </section>
     );
 }
