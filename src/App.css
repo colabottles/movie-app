@@ -249,3 +249,9 @@ select {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
+summary img {
+  height: 400px;
+  width: 250px;
+  aspect-ratio: 1 / 2;
+}

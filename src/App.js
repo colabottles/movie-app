@@ -14,7 +14,13 @@ function App() {
   });
 
   const apiURL =
-    "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/movies/";
+    "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/movies";
+
+  // For demo purposes only to get the interface populated.
+  const axiosInstance = axios.create({
+    baseURL: apiURL,
+    headers: {'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvcGVuSnd0MCIsIm5hbWUiOiJPcGVuSldUWzBdIn0.49JQF4ICJeqxpiIZ9x748VVOHj6FElyRm1tNpFGqaUY`}
+  });
 
   const searchInput = (e) => {
     let s = e.target.value;
@@ -26,9 +32,10 @@ function App() {
 
   const search = (e) => {
     if (e.key === "Enter") {
-      axios(apiURL + "&s=" + state.s).then(
-        ({ data }) => {
-          let results = data.Search;
+    e.preventDefault();
+      axiosInstance.get(`${apiURL}?s=${state.s}&limit=10&page=2`)
+        .then(({ data }) => {
+          let results = data.data;
 
           console.log(results);
 
@@ -81,18 +88,18 @@ function App() {
 
           {state.results.map((e) => (
             <details className="item"
-              key={e}
+              key={e.id}
               onClick={() =>
                 openDetail(e.apiURL)
               }
             >
               <summary>
                 <img
-                  src={e.Poster}
-                  alt='movie poster'
+                  src={e.posterUrl}
+                  alt={e.title}
                 />
                 <h2>
-                  {e.Title}
+                  {e.title}
                 </h2>
               </summary>
             </details>
