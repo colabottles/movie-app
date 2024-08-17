@@ -89,6 +89,10 @@ p.Intro {
   font-weight: 500;
 }
 
+.searchBar {
+  display: flex;
+}
+
 form:focus-within {
   border-color: oklch(83.2% 0.117 218.69);
   box-shadow: 0 0 5px oklch(83.2% 0.117 218.69);
