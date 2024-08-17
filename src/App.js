@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from './film-reel.svg';
 import './App.css';
@@ -9,9 +9,29 @@ import Pagination from './components/Pagination';
 function App() {
   const [state, setState] = useState({
     s: "search",
+    // g: "genre",
     results: [],
     selected: {},
   });
+
+  useEffect(() => {
+    
+      axiosInstance.get(`${apiURL}?page=1&limit=10`)
+        .then(({ data }) => {
+          let results = data.data;
+
+          console.log(results);
+
+          setState((prevState) => {
+            return {
+              ...prevState,
+              results: results,
+            };
+          });
+        }
+        );
+      }
+  ,[]);
 
   const apiURL =
     "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/movies";
