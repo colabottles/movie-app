@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPaginate from 'react-paginate';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePageClick = (page) => {
@@ -29,31 +30,39 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <nav
-      aria-label="Pagination Navigation"
-      className="pagination"
-      role="navigation"
-    >
-      <button
-        className="pagination__button"
-        onClick={() => handlePageClick(currentPage - 1)}
-        aria-label="Previous page"
-        disabled={currentPage === 1}
-      >
-        &laquo; Previous
-      </button>
-      <div role="list" className="pagination__list">
-        {renderPageNumbers()}
-      </div>
-      <button
-        className="pagination__button"
-        onClick={() => handlePageClick(currentPage + 1)}
-        aria-label="Next page"
-        disabled={currentPage === totalPages}
-      >
-        Next &raquo;
-      </button>
-    </nav>
+    <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
+    // <nav
+    //   aria-label="Pagination Navigation"
+    //   className="pagination"
+    //   role="navigation"
+    // >
+    //   <button
+    //     className="pagination__button"
+    //     onClick={() => handlePageClick(currentPage - 1)}
+    //     aria-label="Previous page"
+    //     disabled={currentPage === 1}
+    //   >
+    //     &laquo; Previous
+    //   </button>
+    //   <div role="list" className="pagination__list">
+    //     {renderPageNumbers()}
+    //   </div>
+    //   <button
+    //     className="pagination__button"
+    //     onClick={() => handlePageClick(currentPage + 1)}
+    //     aria-label="Next page"
+    //     disabled={currentPage === totalPages}
+    //   >
+    //     Next &raquo;
+    //   </button>
+    // </nav>
   );
 };
 

@@ -15,23 +15,22 @@ function App() {
   });
 
   useEffect(() => {
-    
-      axiosInstance.get(`${apiURL}?page=1&limit=10`)
-        .then(({ data }) => {
-          let results = data.data;
+    axiosInstance.get(`${apiURL}?page=1&limit=5`)
+      .then(({ data }) => {
+        let results = data.data;
 
-          console.log(results);
+        console.log(results);
 
-          setState((prevState) => {
-            return {
-              ...prevState,
-              results: results,
-            };
-          });
-        }
-        );
+        setState((prevState) => {
+          return {
+            ...prevState,
+            results: results,
+          };
+        });
       }
-  ,[]);
+      );
+  }
+    , []);
 
   const apiURL =
     "https://0kadddxyh3.execute-api.us-east-1.amazonaws.com/movies";
@@ -39,7 +38,7 @@ function App() {
   // For demo purposes only to get the interface populated.
   const axiosInstance = axios.create({
     baseURL: apiURL,
-    headers: {'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvcGVuSnd0MCIsIm5hbWUiOiJPcGVuSldUWzBdIn0.49JQF4ICJeqxpiIZ9x748VVOHj6FElyRm1tNpFGqaUY`}
+    headers: { 'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvcGVuSnd0MCIsIm5hbWUiOiJPcGVuSldUWzBdIn0.49JQF4ICJeqxpiIZ9x748VVOHj6FElyRm1tNpFGqaUY` }
   });
 
   const searchInput = (e) => {
@@ -52,7 +51,7 @@ function App() {
 
   const search = (e) => {
     if (e.key === "Enter") {
-    e.preventDefault();
+      e.preventDefault();
       axiosInstance.get(`${apiURL}?search=${state.s}`)
         .then(({ data }) => {
           let results = data.data;
@@ -66,7 +65,7 @@ function App() {
             };
           });
         }
-      );
+        );
     }
   };
 
@@ -116,7 +115,7 @@ function App() {
                 <h2>
                   {e.title}
                 </h2>
-                
+
                 <img
                   src={e.posterUrl}
                   alt={e.title}
