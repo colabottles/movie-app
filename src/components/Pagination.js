@@ -14,9 +14,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       pages.push(
         <button
           key={i}
-          className={`pagination__button ${
-            i === currentPage ? 'pagination__button--active' : ''
-          }`}
+          className={`pagination__button ${i === currentPage ? 'pagination__button--active' : ''
+            }`}
           onClick={() => handlePageClick(i)}
           aria-current={i === currentPage ? 'page' : undefined}
           aria-label={`Page ${i}`}
@@ -31,13 +30,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
   return (
     <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+      breakLabel="..."
+      nextLabel="next >"
+      onPageChange={handlePageClick}
+      pageRangeDisplayed={5}
+      previousLabel="< previous"
+      renderOnZeroPageCount={null}
+    />
     // <nav
     //   aria-label="Pagination Navigation"
     //   className="pagination"

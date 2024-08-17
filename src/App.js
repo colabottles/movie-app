@@ -12,10 +12,12 @@ function App() {
     // g: "genre",
     results: [],
     selected: {},
+    totalPages: 0,
+    searchResults: 0,
   });
 
   useEffect(() => {
-    axiosInstance.get(`${apiURL}?page=1&limit=5`)
+    axiosInstance.get(`${apiURL}`)
       .then(({ data }) => {
         let results = data.data;
 
@@ -25,6 +27,7 @@ function App() {
           return {
             ...prevState,
             results: results,
+            totalPages: data.totalPages * 25,
           };
         });
       }
@@ -62,6 +65,7 @@ function App() {
             return {
               ...prevState,
               results: results,
+              searchResults: data.totalPages
             };
           });
         }
@@ -103,6 +107,13 @@ function App() {
           search={search}
         />
 
+        <span>
+        { state.searchResults > 0 ?
+          <p>Total count: {state.searchResults} of {state.totalPages}</p>:
+          <p>{state.totalPages}</p>
+        }
+        </span>
+        
         <section className="container">
           {state.results.map((e, key) => (
             <details className="item"
