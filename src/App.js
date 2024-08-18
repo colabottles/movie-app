@@ -117,6 +117,24 @@ function App() {
     }
   };
 
+  const handlePagination = (pageNumbers) => {
+      axiosInstance.get(`${apiURL}?page=${pageNumbers}`)
+        .then(({ data }) => {
+          let results = data.data;
+
+          console.log(results);
+
+          setState((prevState) => {
+            return {
+              ...prevState,
+              results: results,
+              searchResults: data.data.length,
+            };
+          });
+        }
+        );
+  };
+
   const openDetail = (id) => {
     axiosInstance(apiURL + "/" + id).then(({ data }) => {
       let result = data;
@@ -159,12 +177,12 @@ function App() {
         </section>
 
         <span>
-        { state.searchResults > 0 ?
-          <p>Total count: {state.searchResults} of {state.totalPages}</p>:
-          <p>{state.totalPages}</p>
-        }
+          {state.searchResults > 0 ?
+            <p>Total count: {state.searchResults} of {state.totalPages}</p> :
+            <p>{state.totalPages}</p>
+          }
         </span>
-        
+
         <section className="container">
           {state.results.map((e, key) => (
             <details className="item"
@@ -200,7 +218,7 @@ function App() {
         ) : (
           false
         )}
-        <Pagination />
+        <Pagination handlePagination={handlePagination} />
       </main>
     </div>
   );
