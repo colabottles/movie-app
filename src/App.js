@@ -79,24 +79,21 @@ function App() {
   };
 
   const search = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      axiosInstance.get(`${apiURL}?search=${state.s}${state.selectedGenre && `&genre=${state.selectedGenre}`}`)
-        .then(({ data }) => {
-          let results = data.data;
+    axiosInstance.get(`${apiURL}?search=${state.s}${state.selectedGenre && `&genre=${state.selectedGenre}`}`)
+      .then(({ data }) => {
+        let results = data.data;
 
-          console.log(results);
+        console.log(results);
 
-          setState((prevState) => {
-            return {
-              ...prevState,
-              results: results,
-              searchResults: data.totalPages
-            };
-          });
-        }
-        );
-    }
+        setState((prevState) => {
+          return {
+            ...prevState,
+            results: results,
+            searchResults: data.data.length
+          };
+        });
+      }
+      );
   };
 
   const searchByGenre = (e) => {
@@ -178,8 +175,9 @@ function App() {
             search={searchByGenre}
           /> */}
 
-          <label for="select-genre">Filter by genre:</label>
+          <label htmlFor="select-genre">Filter by genre:</label>
           <select name="genres" id="genre-select" onChange={e => setState(prev => {
+            e.preventDefault();
             return {
               ...prev,
               selectedGenre: e.target.value,

@@ -2,8 +2,13 @@ import React from "react";
 import "./Search.css";
 
 function Search({ searchInput, search }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("form submitted without reloading page");
+    search(e);
+  }
   return (
-    <form className="search-bar" role="search">
+    <form className="search-bar" role="search" onSubmit={handleSubmit}>
       <label htmlFor="site-search">Search the site for a movie:</label>
       <input
         type="search"
@@ -11,11 +16,10 @@ function Search({ searchInput, search }) {
         id="site-search"
         name="site-search"
         onChange={searchInput}
-        onKeyDown={search}
         autoComplete="off"
       />
 
-      <button type="search">Search</button>
+      <button type="submit">Search</button>
     </form>
   );
 }
