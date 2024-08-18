@@ -89,7 +89,8 @@ function App() {
           return {
             ...prevState,
             results: results,
-            searchResults: data.data.length
+            searchResults: data.data.length,
+            totalPages: data.totalPages,
           };
         });
       }
@@ -118,7 +119,7 @@ function App() {
   };
 
   const handlePagination = (pageNumbers) => {
-    axiosInstance.get(`${apiURL}?page=${pageNumbers}`)
+    axiosInstance.get(`${apiURL}?page=${pageNumbers}${state.s !== "search" && `&search=${state.s}`}`)
       .then(({ data }) => {
         let results = data.data;
 
@@ -129,6 +130,7 @@ function App() {
             ...prevState,
             results: results,
             searchResults: data.data.length,
+            totalPages: data.totalPages,
           };
         });
       }
