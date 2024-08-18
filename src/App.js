@@ -36,6 +36,7 @@ function App() {
     results: [],
     selected: {},
     totalPages: 0,
+    totalCount: 0,
     searchResults: 0,
   });
 
@@ -50,7 +51,8 @@ function App() {
           return {
             ...prevState,
             results: results,
-            totalPages: data.totalPages * 25,
+            totalPages: data.totalPages,
+            totalCount: data.totalPages * 25,
           };
         });
       }
@@ -178,8 +180,8 @@ function App() {
 
         <span>
           {state.searchResults > 0 ?
-            <p>Total count: {state.searchResults} of {state.totalPages}</p> :
-            <p>{state.totalPages}</p>
+            <p>Total count: {state.searchResults} of {state.totalCount}</p> :
+            <p>Total count: {state.totalCount}</p>
           }
         </span>
 
@@ -218,7 +220,7 @@ function App() {
         ) : (
           false
         )}
-        <Pagination handlePagination={handlePagination} />
+        <Pagination handlePagination={handlePagination} totalPages={state.totalPages} />
       </main>
     </div>
   );

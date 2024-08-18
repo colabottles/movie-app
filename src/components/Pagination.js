@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Pagination = ({ handlePagination }) => {
+const Pagination = ({ handlePagination, totalPages }) => {
 
   const [pageNumbers, setPageNumber] = useState(1);
   
@@ -23,10 +23,11 @@ const Pagination = ({ handlePagination }) => {
         &laquo; Previous
       </button>
       <div role="list" className="pagination__list">
-        
+        Page {pageNumbers} of {totalPages}
       </div>
       <button
         className="pagination__button"
+        disabled={pageNumbers === totalPages}
         onClick={() => {
           handlePagination(pageNumbers + 1)
           setPageNumber(pageNumbers + 1);
