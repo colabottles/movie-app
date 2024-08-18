@@ -28,7 +28,7 @@ const MovieList = ({ movies }) => {
     const [sortedMovies, setSortedMovies] = useState(movies);
     const [selectedGenre, setSelectedGenre] = useState('');
 
-    const genres = ['All', 'Action', 'Comedy', 'Drama', 'Fantasy', 'Horror'];
+    const genres = ['action', 'comedy', 'drama', 'fantasy', 'horror'];
 
     const handleGenreChange = (genre) => {
         setSelectedGenre(genre);

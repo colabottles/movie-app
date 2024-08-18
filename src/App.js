@@ -38,6 +38,7 @@ function App() {
     totalPages: 0,
     totalCount: 0,
     searchResults: 0,
+    selectedGenre: "",
   });
 
   useEffect(() => {
@@ -80,7 +81,7 @@ function App() {
   const search = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      axiosInstance.get(`${apiURL}?search=${state.s}`)
+      axiosInstance.get(`${apiURL}?search=${state.s}${state.selectedGenre && `&genre=${state.selectedGenre}`}`)
         .then(({ data }) => {
           let results = data.data;
 
@@ -120,21 +121,21 @@ function App() {
   };
 
   const handlePagination = (pageNumbers) => {
-      axiosInstance.get(`${apiURL}?page=${pageNumbers}`)
-        .then(({ data }) => {
-          let results = data.data;
+    axiosInstance.get(`${apiURL}?page=${pageNumbers}`)
+      .then(({ data }) => {
+        let results = data.data;
 
-          console.log(results);
+        console.log(results);
 
-          setState((prevState) => {
-            return {
-              ...prevState,
-              results: results,
-              searchResults: data.data.length,
-            };
-          });
-        }
-        );
+        setState((prevState) => {
+          return {
+            ...prevState,
+            results: results,
+            searchResults: data.data.length,
+          };
+        });
+      }
+      );
   };
 
   const openDetail = (id) => {
@@ -172,10 +173,39 @@ function App() {
             search={search}
           />
 
-          <SearchByGenre
+          {/* <SearchByGenre
             searchInput={searchInput}
             search={searchByGenre}
-          />
+          /> */}
+
+          <label for="select-genre">Filter by genre:</label>
+          <select name="genres" id="genre-select" onChange={e => setState(prev => {
+            return {
+              ...prev,
+              selectedGenre: e.target.value,
+            }
+          })}>
+            <option value="">--Select a genre--</option>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="animation">Animation</option>
+            <option value="biography">Biography</option>
+            <option value="crime">Crime</option>
+            <option value="comedy">Comedy</option>
+            <option value="documentary">Documentary</option>
+            <option value="drama">Drama</option>
+            <option value="family">Family</option>
+            <option value="history">History</option>
+            <option value="horror">Horror</option>
+            <option value="musical">Musical</option>
+            <option value="mystery">Mystery</option>
+            <option value="romance">Romance</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="short">Short</option>
+            <option value="thriller">Thriller</option>
+            <option value="war">War</option>
+            <option value="western">Western</option>
+          </select>
         </section>
 
         <span>
