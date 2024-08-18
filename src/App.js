@@ -1,33 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { gql } from "@apollo/client";
 import logo from './film-reel.svg';
 import './App.css';
 import Search from './components/Search';
-import SearchByGenre from './components/SearchByGenre';
 import Details from './components/Details';
 import Pagination from './components/Pagination';
 
-const GET_MOVIES = `
-  query Movie {
-  movies {
-    nodes {
-      id,
-      title,
-      posterUrl,
-      rating,
-      genres {
-        id,
-        title
-      }
-      summary
-      mainActors
-      duration
-      directors
-    }
-  }
-}
-`;
 
 function App() {
   const [state, setState] = useState({
@@ -97,27 +75,6 @@ function App() {
       );
   };
 
-  const searchByGenre = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      axiosInstance.get(`${apiURL}?genre=${state.s}`)
-        .then(({ data }) => {
-          let results = data.data;
-
-          console.log(results);
-
-          setState((prevState) => {
-            return {
-              ...prevState,
-              results: results,
-              searchResults: data.data.length,
-            };
-          });
-        }
-        );
-    }
-  };
-
   const handlePagination = (pageNumbers) => {
     axiosInstance.get(`${apiURL}?page=${pageNumbers}${state.s !== "search" && `&search=${state.s}`}`)
       .then(({ data }) => {
@@ -171,11 +128,6 @@ function App() {
             searchInput={searchInput}
             search={search}
           />
-
-          {/* <SearchByGenre
-            searchInput={searchInput}
-            search={searchByGenre}
-          /> */}
 
           <label htmlFor="select-genre">Filter by genre:</label>
           <select name="genres" id="genre-select" onChange={e => setState(prev => {
