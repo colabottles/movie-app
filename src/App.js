@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from './film-reel.svg';
 import './App.css';
 import Search from './components/Search';
 import Details from './components/Details';
 import Pagination from './components/Pagination';
-
 
 function App() {
   const [state, setState] = useState({
@@ -107,7 +106,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="React Movie App" aria-label="React Movie App" />
       </header>
       <main>
         <h1>
@@ -123,35 +122,38 @@ function App() {
             search={search}
           />
 
-          <label htmlFor="select-genre">Filter by genre:</label>
-          <select name="genres" id="genre-select" onChange={e => setState(prev => {
-            e.preventDefault();
-            return {
-              ...prev,
-              selectedGenre: e.target.value,
-            }
-          })}>
-            <option value="">--Select a genre--</option>
-            <option value="action">Action</option>
-            <option value="adventure">Adventure</option>
-            <option value="animation">Animation</option>
-            <option value="biography">Biography</option>
-            <option value="crime">Crime</option>
-            <option value="comedy">Comedy</option>
-            <option value="documentary">Documentary</option>
-            <option value="drama">Drama</option>
-            <option value="family">Family</option>
-            <option value="history">History</option>
-            <option value="horror">Horror</option>
-            <option value="musical">Musical</option>
-            <option value="mystery">Mystery</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="short">Short</option>
-            <option value="thriller">Thriller</option>
-            <option value="war">War</option>
-            <option value="western">Western</option>
-          </select>
+          <label htmlFor="genre-select" id="select-genre">Filter by genre: 
+            <select name="genres" id="genre-select" autocomplete="off" onChange={e => setState(prev => {
+              e.preventDefault();
+              return {
+                ...prev,
+                selectedGenre: e.target.value,
+              }
+            })}>
+              <optgroup>
+                <option value="">--Select a genre--</option>
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="animation">Animation</option>
+                <option value="biography">Biography</option>
+                <option value="crime">Crime</option>
+                <option value="comedy">Comedy</option>
+                <option value="documentary">Documentary</option>
+                <option value="drama">Drama</option>
+                <option value="family">Family</option>
+                <option value="history">History</option>
+                <option value="horror">Horror</option>
+                <option value="musical">Musical</option>
+                <option value="mystery">Mystery</option>
+                <option value="romance">Romance</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="short">Short</option>
+                <option value="thriller">Thriller</option>
+                <option value="war">War</option>
+                <option value="western">Western</option>
+              </optgroup>
+            </select>
+          </label>
         </section>
 
         <section>
@@ -173,6 +175,7 @@ function App() {
                 <img
                   src={e.posterUrl}
                   alt={e.title}
+                  aria-label={e.title}
                 />
 
                 <p>

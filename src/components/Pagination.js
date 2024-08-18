@@ -8,7 +8,6 @@ const Pagination = ({ handlePagination, totalPages }) => {
     <nav
       aria-label="Pagination Navigation"
       className="pagination"
-      role="navigation"
     >
       <button
         className="pagination__button"
@@ -16,11 +15,10 @@ const Pagination = ({ handlePagination, totalPages }) => {
         onClick={() => {
           handlePagination(pageNumbers - 1)
           setPageNumber(pageNumbers - 1);
+          }
         }
-        }
-        aria-label="Previous page"
       >
-        &laquo; Previous
+        &laquo; Previous Page
       </button>
       <ul className="pagination__list">
         <li>Page {pageNumbers} of {totalPages}</li>
@@ -33,9 +31,8 @@ const Pagination = ({ handlePagination, totalPages }) => {
           setPageNumber(pageNumbers + 1);
         }
         }
-        aria-label="Next page"
       >
-        Next &raquo;
+        Next Page &raquo;
       </button>
     </nav>
   );
