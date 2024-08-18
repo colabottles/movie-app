@@ -24,8 +24,6 @@ function App() {
       .then(({ data }) => {
         let results = data.data;
 
-        console.log(results);
-
         setState((prevState) => {
           return {
             ...prevState,
@@ -61,8 +59,6 @@ function App() {
       .then(({ data }) => {
         let results = data.data;
 
-        console.log(results);
-
         setState((prevState) => {
           return {
             ...prevState,
@@ -79,8 +75,6 @@ function App() {
     axiosInstance.get(`${apiURL}?page=${pageNumbers}${state.s !== "search" && `&search=${state.s}`}`)
       .then(({ data }) => {
         let results = data.data;
-
-        console.log(results);
 
         setState((prevState) => {
           return {
@@ -160,12 +154,12 @@ function App() {
           </select>
         </section>
 
-        <span>
+        <section>
           {state.searchResults > 0 ?
-            <p>Total count: {state.searchResults} of {state.totalCount}</p> :
-            <p>Total count: {state.totalCount}</p>
+            <h2>Total count: {state.searchResults} of {state.totalCount}</h2> :
+            <p>Total movies: {state.totalCount}</p>
           }
-        </span>
+        </section>
 
         <section className="container">
           {state.results.map((e, key) => (
@@ -176,15 +170,16 @@ function App() {
               }
             >
               <summary>
-                <h2>
-                  {e.title}
-                </h2>
-
                 <img
                   src={e.posterUrl}
                   alt={e.title}
                 />
+
+                <p>
+                  {e.title}
+                </p>
               </summary>
+
               <Details
                 selected={state.selected}
                 closeDetail={closeDetail}

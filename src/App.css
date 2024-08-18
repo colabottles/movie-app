@@ -1,3 +1,27 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  background-color: oklch(18.04% 0 351);
+  color: oklch(100% 0 0);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
 /* Basic link styling */
 a {
   background-color: oklch(18.04% 0 351);
@@ -9,8 +33,7 @@ a {
 
 /* Apply the style only when link is focused via keyboard - a11y */
 a:focus {
-  outline: none;
-  box-shadow: 0 0 5px oklch(83.2% 0.117 218.69);
+  outline: 2px solid oklch(83.2% 0.117 218.69);
 }
 
 /* Apply style when link is focused, but not when clicked with a mouse */
@@ -57,14 +80,10 @@ a:focus:not(:focus-visible) {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
-}
-
-body {
-  background-color:oklch(18.04% 0 351);
-  color: oklch(100% 0 0);
 }
 
 .wrapper {
@@ -84,14 +103,21 @@ body {
   width: 100%;
 }
 
+main {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
 p.Intro {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
+  text-align: left;
+  width: 50lvw;
 }
 
 form:focus-within {
-  border-color: oklch(83.2% 0.117 218.69);
-  box-shadow: 0 0 5px oklch(83.2% 0.117 218.69);
+  border: 2px solid oklch(83.2% 0.117 218.69);
 }
 
 label {
@@ -100,14 +126,8 @@ label {
   padding: 1rem;
 }
 
-input,
-label {
-  margin: 0.4rem 0;
-  padding: 0.5rem;
-}
-
 button {
-  background-color: oklch(48.24% 0.185 146.12);
+  background-color: oklch(88.24% 11.185 203.12);
   border: none;
   color: oklch(100% 0 0);
   font-size: 1rem;
@@ -117,20 +137,16 @@ button {
   letter-spacing: 1px;
 }
 
-input:invalid ~ span::after {
+input:invalid~span::after {
   content: "✖";
   padding-left: 5px;
   position: absolute;
 }
 
-input:valid ~ span::after {
+input:valid~span::after {
   content: "✓";
   padding-left: 5px;
   position: absolute;
-}
-
-.searchBar {
-  display: flex;
 }
 
 .pagination {
@@ -139,17 +155,13 @@ input:valid ~ span::after {
   justify-content: center;
 }
 
-.pagination__list {
-  display: flex;
-}
-
 .pagination__button {
-  margin: 0 5px;
+  margin: 1rem;
   padding: 8px 12px;
   font-size: 1rem;
   cursor: pointer;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  border: 1px solid oklch(84.52% 0 0);
+  background-color: oklch(100% 0 0);
   color: #333;
 }
 
@@ -159,9 +171,14 @@ input:valid ~ span::after {
 }
 
 .pagination__button--active {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+  background-color: oklch(83.2% 0.117 218.69);
+  color: oklch(100% 0 0);
+  border-color: oklch(83.2% 0.117 218.69);
+}
+
+.pagination__list {
+  list-style-type: none;
+  padding: 0;
 }
 
 .pagination-container {
@@ -173,7 +190,7 @@ input:valid ~ span::after {
     height: 32px;
     text-align: center;
     margin: auto 4px;
-    color: rgba(0, 0, 0, 0.87);
+    color: oklch(10% 0 0);
     display: flex;
     box-sizing: border-box;
     align-items: center;
@@ -187,13 +204,14 @@ input:valid ~ span::after {
       background-color: transparent;
       cursor: default;
     }
+
     &:hover {
-      background-color: rgba(0, 0, 0, 0.04);
+      background-color: oklch(0% 0 0 / 4%);
       cursor: pointer;
     }
 
     &.selected {
-      background-color: rgba(0, 0, 0, 0.08);
+      background-color: oklch(0% 0 0 / 8%);
     }
 
     .arrow {
@@ -205,8 +223,8 @@ input:valid ~ span::after {
         display: inline-block;
         width: 0.4em;
         height: 0.4em;
-        border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.87);
+        border-right: 0.12em solid oklch(0% 0 0 / 87%);
+        border-top: 0.12em solid oklch(0% 0 0 / 87%);
       }
 
       &.left {
@@ -222,8 +240,8 @@ input:valid ~ span::after {
       pointer-events: none;
 
       .arrow::before {
-        border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+        border-right: 0.12em solid oklch(0% 0 0 / 43%);
+        border-top: 0.12em solid oklch(0% 0 0 / 43%);
       }
 
       &:hover {
@@ -234,32 +252,61 @@ input:valid ~ span::after {
   }
 }
 
-.movie-list {
+.container {
+  width: 600px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, 300px);
+  grid-gap: 10px;
 }
 
-.movie-item {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.searchBar {
+  background-color: oklch(0% 0 0 / 87%);
+  margin-block: 1em;
+  padding-block: 1em;
 }
 
 select {
-  padding: 8px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  appearance: none;
+  color: oklch(100% 0 0);
+  background-color: oklch(0% 0 0 / 87%);
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
 }
 
-details img {
-  height: 400px;
-  width: 250px;
-  aspect-ratio: 1 / 2;
+select#genre-select {
+  border: 1px solid oklch(84.52% 0 0);
+}
+
+summary {
+  display: inline flow-root list-item;
+  width: 200px;
+}
+
+details.item {
+  padding: 1rem;
+}
+
+details.item summary img {
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.information {
+  background-color: oklch(0% 0 0 / 27%);
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  text-align: left;
 }
 
 ul.information li {
   list-style-type: none;
+  font-size: 1rem;
 }
