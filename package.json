@@ -19,6 +19,11 @@
     "typescript": "^5.5.4",
     "web-vitals": "^4.2.3"
   },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
