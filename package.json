@@ -10,7 +10,7 @@
     "@types/node": "^22.4.2",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
-    "axios": "^1.12.0",
+    "axios": "^1.13.5",
     "cors": "^2.8.5",
     "postcss": "^8.4.41",
     "react": "^18.3.1",
