@@ -97,7 +97,7 @@ function App() {
 
       <main>
         <h1>
-          <a href="/">React Movie App</a>
+          <a href="/">FindFlicks</a>
         </h1>
 
         <p className="Intro">
