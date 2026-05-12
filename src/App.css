@@ -1,4 +1,4 @@
-/* CSS Reset */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -12,6 +12,7 @@
 body {
   background-color: oklch(18.04% 0 351);
   color: oklch(100% 0 0);
+  font-family: system-ui, sans-serif;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
 }
@@ -22,25 +23,18 @@ svg {
   max-width: 100%;
 }
 
-/* Basic link styling */
+/* Links */
 a {
-  background-color: oklch(18.04% 0 351);
   color: oklch(83.2% 0.117 218.69);
-  margin: 0.75rem;
-  padding: 0.5rem;
   text-decoration: none;
 }
 
-/* Apply the style only when link is focused via keyboard - a11y */
-a:focus {
+a:focus-visible {
   outline: 2px solid oklch(83.2% 0.117 218.69);
+  outline-offset: 3px;
 }
 
-/* Apply style when link is focused, but not when clicked with a mouse */
-a:focus:not(:focus-visible) {
-  box-shadow: none;
-}
-
+/* App shell */
 .App {
   text-align: center;
 }
@@ -48,32 +42,13 @@ a:focus:not(:focus-visible) {
 .App-logo {
   height: 20vmin;
   pointer-events: none;
+  margin-inline: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 2s linear;
-    animation-direction: reverse;
+    animation: App-logo-spin 2s linear infinite reverse;
   }
-}
-
-.App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 1vmin);
-  text-align: left;
-  color: oklch(100% 0 0);
-  margin-top: 2rem;
-}
-
-.App-header a {
-  color: oklch(83.2% 0.117 218.69);
-  text-decoration-line: underline;
-  text-decoration-skip: spaces;
-  text-decoration-skip-ink: auto;
-  text-underline-offset: .25rem;
 }
 
 @keyframes App-logo-spin {
@@ -86,227 +61,302 @@ a:focus:not(:focus-visible) {
   }
 }
 
-.wrapper {
-  align-items: center;
+.App-header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-.content {
   align-items: center;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  margin-bottom: 2rem;
-  min-height: calc(100vh - 200px);
-  width: 100%;
+  color: oklch(100% 0 0);
+  margin-top: 2rem;
 }
 
+/* Main layout */
 main {
   display: grid;
-  justify-content: center;
-  align-content: center;
+  justify-items: center;
+  padding-inline: 1rem;
+  gap: 1rem;
 }
 
+main h1 {
+  margin-block: 1rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+main h1 a {
+  color: oklch(83.2% 0.117 218.69);
+  text-decoration-line: underline;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.25rem;
+}
+
+/* Intro. was 50lvw with no padding, overflowed on mobile */
 p.Intro {
   font-size: 1rem;
   font-weight: 500;
   text-align: left;
-  width: 50lvw;
+  max-width: 65ch;
+  width: 100%;
+  padding-inline: 0.5rem;
 }
 
-form:focus-within {
-  border: 2px solid oklch(83.2% 0.117 218.69);
+/* Search bar section */
+.searchBar {
+  background-color: oklch(0% 0 0 / 60%);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 700px;
+  margin-block: 1em;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Form & Search component */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Show a visible focus ring on the form when any child is focused */
+.search-bar:focus-within {
+  outline: 2px solid oklch(83.2% 0.117 218.69);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 label {
-  display: inline;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  padding: 0.25rem;
+}
+
+input[type="search"] {
+  background-color: oklch(100% 0 0);
+  color: oklch(10% 0 0);
+  border: 1px solid oklch(70% 0 0);
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0.4em 0.6em;
+  min-width: 200px;
+}
+
+input[type="search"]:focus-visible {
+  outline: 2px solid oklch(83.2% 0.117 218.69);
+  outline-offset: 2px;
+}
+
+/* Select & genre filter */
+select {
+  appearance: none;
+  color: oklch(100% 0 0);
+  background-color: oklch(25% 0 0);
+  border: 1px solid oklch(60% 0 0);
+  border-radius: 4px;
+  padding: 0.4em 0.6em;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: inherit;
+}
+
+select:focus-visible {
+  outline: 2px solid oklch(83.2% 0.117 218.69);
+  outline-offset: 2px;
+}
+
+/* Buttons */
+button {
+  background-color: oklch(39.793% 0.00005 271.152);
+  border: none;
+  border-radius: 4px;
+  color: oklch(100% 0.00011 271.152);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.25em;
+  padding: 0.45em 0.9em;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 2px solid oklch(83.2% 0.117 218.69);
+  outline-offset: 3px;
+}
+
+button:hover {
+  background-color: oklch(78% 0.13 210);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Result count */
+.result-count {
+  font-size: 0.95rem;
+  color: oklch(80% 0 0);
+}
+
+/* Status messages */
+.loading,
+.error,
+.empty {
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.error {
+  color: oklch(75% 0.18 25);
+  border: 1px solid oklch(75% 0.18 25);
+  border-radius: 4px;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+/* Movie grid */
+.container {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.25rem;
+  padding-inline: 0.5rem;
+}
+
+/* Movie card */
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background-color: oklch(24% 0 0);
+  border-radius: 6px;
+}
+
+.item img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.item p {
+  font-size: 0.9rem;
+  text-align: center;
+  flex: 1;
+}
+
+/* "View details" button inside each card */
+.item .view-btn {
+  font-size: 0.85rem;
+  padding: 0.3em 0.7em;
+  margin: 0;
+  width: 100%;
+}
+
+/* Detail panel (dialog) */
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: oklch(0% 0 0 / 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
   padding: 1rem;
 }
 
-button {
-  background-color: oklch(88.24% 11.185 203.12);
-  border: none;
-  color: oklch(100% 0 0);
+.detail-panel {
+  background-color: oklch(22% 0 0);
+  border: 1px solid oklch(40% 0 0);
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  padding: 1.5rem;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.detail-panel h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: oklch(83.2% 0.117 218.69);
+}
+
+.detail-poster {
+  width: 140px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Information list, kept existing class name */
+ul.information {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+ul.information li {
   font-size: 1rem;
-  font-weight: 600;
-  margin: 0.5em;
-  padding: 0.5em;
-  letter-spacing: 1px;
+  line-height: 1.5;
 }
 
-input:invalid~span::after {
-  content: "✖";
-  padding-left: 5px;
-  position: absolute;
+.close-btn {
+  margin-top: 1.25rem;
+  width: 100%;
 }
 
-input:valid~span::after {
-  content: "✓";
-  padding-left: 5px;
-  position: absolute;
-}
-
+/* Pagination */
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-block: 1.5rem;
+  width: 100%;
+}
+
+/* Page X of Y text */
+.pagination__list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.95rem;
+  color: oklch(75% 0 0);
 }
 
 .pagination__button {
-  margin: 1rem;
-  padding: 8px 12px;
+  padding: 0.45em 0.9em;
   font-size: 1rem;
   cursor: pointer;
-  border: 1px solid oklch(84.52% 0 0);
-  background-color: oklch(100% 0 0);
-  color: #333;
+  border: 1px solid oklch(60% 0 0);
+  border-radius: 4px;
+  background-color: oklch(28% 0 0);
+  color: oklch(95% 0 0);
+}
+
+.pagination__button:hover:not(:disabled) {
+  background-color: oklch(38% 0 0);
+}
+
+.pagination__button:focus-visible {
+  outline: 2px solid oklch(83.2% 0.117 218.69);
+  outline-offset: 3px;
 }
 
 .pagination__button[disabled] {
-  opacity: 0.6;
+  opacity: 0.4;
   cursor: not-allowed;
-}
-
-.pagination__button--active {
-  background-color: oklch(83.2% 0.117 218.69);
-  color: oklch(100% 0 0);
-  border-color: oklch(83.2% 0.117 218.69);
-}
-
-.pagination__list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.pagination-container {
-  display: flex;
-  list-style-type: none;
-
-  .pagination-item {
-    padding: 0 12px;
-    height: 32px;
-    text-align: center;
-    margin: auto 4px;
-    color: oklch(10% 0 0);
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    letter-spacing: 0.01071em;
-    border-radius: 16px;
-    line-height: 1.43;
-    font-size: 13px;
-    min-width: 32px;
-
-    &.dots:hover {
-      background-color: transparent;
-      cursor: default;
-    }
-
-    &:hover {
-      background-color: oklch(0% 0 0 / 4%);
-      cursor: pointer;
-    }
-
-    &.selected {
-      background-color: oklch(0% 0 0 / 8%);
-    }
-
-    .arrow {
-      &::before {
-        position: relative;
-        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
-        content: '';
-        /* By using an em scale, the arrows will size with the font */
-        display: inline-block;
-        width: 0.4em;
-        height: 0.4em;
-        border-right: 0.12em solid oklch(0% 0 0 / 87%);
-        border-top: 0.12em solid oklch(0% 0 0 / 87%);
-      }
-
-      &.left {
-        transform: rotate(-135deg) translate(-50%);
-      }
-
-      &.right {
-        transform: rotate(45deg);
-      }
-    }
-
-    &.disabled {
-      pointer-events: none;
-
-      .arrow::before {
-        border-right: 0.12em solid oklch(0% 0 0 / 43%);
-        border-top: 0.12em solid oklch(0% 0 0 / 43%);
-      }
-
-      &:hover {
-        background-color: transparent;
-        cursor: default;
-      }
-    }
-  }
-}
-
-.container {
-  width: 600px;
-  display: grid;
-  grid-template-columns: repeat(3, 300px);
-  grid-gap: 10px;
-}
-
-.searchBar {
-  background-color: oklch(0% 0 0 / 87%);
-  margin-block: 1em;
-  padding-block: 1em;
-}
-
-select {
-  appearance: none;
-  color: oklch(100% 0 0);
-  background-color: oklch(0% 0 0 / 87%);
-  border: none;
-  padding: 0;
-  margin: 0;
-  font-family: inherit;
-  font-size: 1rem;
-  cursor: inherit;
-  line-height: inherit;
-  outline: none;
-}
-
-select#genre-select {
-  border: 1px solid oklch(84.52% 0 0);
-}
-
-summary {
-  display: inline flow-root list-item;
-  width: 200px;
-}
-
-details.item {
-  padding: 1rem;
-}
-
-details.item summary img {
-  height: 300px;
-  width: 200px;
-  object-fit: cover;
-}
-
-.information {
-  background-color: oklch(0% 0 0 / 27%);
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  text-align: left;
-}
-
-ul.information li {
-  list-style-type: none;
-  font-size: 1rem;
 }

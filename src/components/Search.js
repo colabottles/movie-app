@@ -1,12 +1,13 @@
-import React from "react";
-import "./Search.css";
+import React from 'react';
 
+// Search component — kept as a form so Enter key works natively.
+// Added onSubmit handler to prevent page reload (was already there, kept it).
 function Search({ searchInput, search }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted without reloading page");
     search(e);
-  }
+  };
+
   return (
     <form className="search-bar" role="search" onSubmit={handleSubmit}>
       <label htmlFor="site-search">Search the site for a movie:</label>
@@ -18,7 +19,6 @@ function Search({ searchInput, search }) {
         onChange={searchInput}
         autoComplete="off"
       />
-
       <button type="submit">Search</button>
     </form>
   );
