@@ -112,7 +112,7 @@ function App() {
           />
 
           <label htmlFor="genre-select">
-            Filter by genre:
+            Filter by genre:&nbsp;
             {/* autoComplete not autocomplete — JSX props are camelCase */}
             <select
               id="genre-select"
